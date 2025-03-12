@@ -19,7 +19,7 @@ public class ProductService {
     }
 
     public Product getProductById(int id){
-        return repository.findById(id).orElse(new Product());
+        return repository.findById(id).orElse(null);
     }
 
     public void addProducts(Product prod){
