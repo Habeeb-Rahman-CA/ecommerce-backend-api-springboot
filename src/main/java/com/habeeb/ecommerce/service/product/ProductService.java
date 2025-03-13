@@ -3,10 +3,7 @@ package com.habeeb.ecommerce.service.product;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.habeeb.ecommerce.EcommerceApplication;
-import com.habeeb.ecommerce.controller.ProductController;
 import com.habeeb.ecommerce.exceptions.ProductNotFoundException;
 import com.habeeb.ecommerce.model.Category;
 import com.habeeb.ecommerce.model.Product;
