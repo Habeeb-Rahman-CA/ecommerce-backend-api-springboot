@@ -18,20 +18,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductService implements IProductService {
 
+    // Repository Injection
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
 
-    @Override
+    @Override // Get all products
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    @Override
+    @Override //Get product by id
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product not found"));
     }
 
-    @Override
+    @Override // Add product
     public Product addProduct(AddProductRequest request) {
         Category category = Optional.ofNullable(categoryRepository.findByName(request.getCategory().getName()))
                 .orElseGet(() -> {
@@ -42,6 +43,7 @@ public class ProductService implements IProductService {
         return productRepository.save(createProduct(request, category));
     }
 
+    // Creating a product
     private Product createProduct(AddProductRequest request, Category category) {
         return new Product(
                 request.getName(),
@@ -52,20 +54,21 @@ public class ProductService implements IProductService {
                 category);
     }
 
-    @Override
+    @Override // Delete product by id
     public void deleteProductById(Long id) {
         productRepository.findById(id).ifPresentOrElse(productRepository::delete, () -> {
             throw new ProductNotFoundException("Product not found!");
         });
     }
 
-    @Override
+    @Override // Update Product
     public Product updateProduct(UpdateProductRequest request, Long id) {
         return productRepository.findById(id)
                 .map(existingProduct -> updateExistingProduct(existingProduct, request))
                 .map(productRepository::save).orElseThrow(() -> new ProductNotFoundException("Product not found"));
     }
 
+    // Updating the existing product
     private Product updateExistingProduct(Product existingProduct, UpdateProductRequest request) {
         existingProduct.setName(request.getName());
         existingProduct.setBrand(request.getBrand());
@@ -80,32 +83,32 @@ public class ProductService implements IProductService {
         return existingProduct;
     }
 
-    @Override
+    @Override // Get product by category
     public List<Product> getProductByCategory(String category) {
         return productRepository.findByCategoryName(category);
     }
 
-    @Override
+    @Override // Get product by brand
     public List<Product> getProductByBrand(String brand) {
         return productRepository.findByBrand(brand);
     }
 
-    @Override
+    @Override // Get product by category and brand
     public List<Product> getProductByCategoryAndBrand(String category, String brand) {
         return productRepository.findByCategoryNameAndBrand(category, brand);
     }
 
-    @Override
+    @Override // Get product by name
     public List<Product> getProductByName(String name) {
         return productRepository.findByName(name);
     }
 
-    @Override
+    @Override // Get product by brand and name
     public List<Product> getProductByBrandAndName(String brand, String name) {
         return productRepository.findByBrandAndName(brand, name);
     }
 
-    @Override
+    @Override // Count product by brand and name
     public Long countProductByBrandAndName(String brand, String name) {
         return productRepository.countByBrandAndName(brand, name);
     }
