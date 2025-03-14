@@ -7,6 +7,8 @@ import com.habeeb.ecommerce.request.AddProductRequest;
 import com.habeeb.ecommerce.request.UpdateProductRequest;
 
 public interface IProductService {
+
+    // Service methods interface
     Product addProduct(AddProductRequest request);
 
     Product getProductById(Long id);

@@ -9,6 +9,8 @@ import com.habeeb.ecommerce.model.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
+
+    // Creating custom methods
     List<Product> findByCategoryName(String category);
 
     List<Product> findByBrand(String brand);
