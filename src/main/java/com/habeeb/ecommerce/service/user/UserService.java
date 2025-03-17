@@ -1,7 +1,6 @@
 package com.habeeb.ecommerce.service.user;
 
 import java.util.Optional;
-import java.util.function.Function;
 
 import org.springframework.stereotype.Service;
 

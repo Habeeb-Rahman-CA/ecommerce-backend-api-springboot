@@ -3,7 +3,6 @@ package com.habeeb.ecommerce.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.habeeb.ecommerce.model.Category;
-import com.habeeb.ecommerce.repository.CategoryRepository;
 import com.habeeb.ecommerce.response.ApiResponse;
-import com.habeeb.ecommerce.service.category.CategoryService;
 import com.habeeb.ecommerce.service.category.ICategoryService;
 
 import lombok.RequiredArgsConstructor;
